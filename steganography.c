@@ -108,17 +108,21 @@ int main(void)
                 pxl[i][2]=rgb.r;
         }
 
-        pxl[0][0]=strlen(msg);
-        
+        pxl[1500][1]=strlen(msg);
+        //printf("%d value of pxl:", pxl[1500][1]);
+    
 
-        for(int i = 1; i <=strlen(msg); i++)
+        int cou=0;
+        for(int i = 0; i <strlen(msg)/3; i++)
         {
-            int row = i / columns;
-            int col = i % columns;
-
-            pxl[row][col]=msg[i-1];
-           
+            for(int j=0; j<3; j++)
+            {
+                pxl[i][j]=msg[cou];
+                cou++;
+            }           
         }
+
+
             
         for(int i = 0; i < 3; i++)
         {
@@ -153,7 +157,7 @@ int main(void)
 
         BYTE pxl[total_pxl][3];
 
-        for(int i = 0; i < total_pxl; i++)
+        for(int i = 0; i <= total_pxl; i++)
         {
             RGBarr rgb;
             fread(&rgb, sizeof(RGBarr), 1, inptr);	
@@ -162,13 +166,14 @@ int main(void)
                 pxl[i][2]=rgb.r;
         }
 
-        for(int i = 1; i <=pxl[0][0]; i++)
+        int cou=0;
+        for(int i = 0; i <pxl[1500][1]/3; i++)
         {
-            int row = i / columns;
-            int col = i % columns;
-
-            printf("%c", pxl[row][col]);
-                   
+            for(int j=0; j<3; j++)
+            {
+                printf("%c", pxl[i][j]);
+                cou++;
+            }           
         }
 
         fclose(inptr);
